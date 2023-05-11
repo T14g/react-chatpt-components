@@ -7,6 +7,7 @@ function App() {
     { value: "orange", label: "Orange" },
     { value: "grape", label: "Grape" },
     { value: "watermelon", label: "Watermelon" },
+    { value: "todos", label: "Todos" },
   ];
   return (
     <div className="App">

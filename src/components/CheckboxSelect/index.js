@@ -21,7 +21,20 @@ const CheckboxSelect = ({ options, label }) => {
       ]);
     } else {
       console.log("selecionou");
-      setSelectedOptions([...selectedOptions, option]);
+
+      if (option === "todos") {
+        setSelectedOptions([option]);
+      } else {
+        const updatedOptions = [];
+
+        selectedOptions.forEach((op) => {
+          if (op !== "todos") {
+            updatedOptions.push(op);
+          }
+        });
+        updatedOptions.push(option);
+        setSelectedOptions(updatedOptions);
+      }
     }
   };
 
