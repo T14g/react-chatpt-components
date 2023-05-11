@@ -4,7 +4,6 @@ import "./style.css";
 const CheckboxSelect = ({ options, label }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [confirmedOptions, setConfirmedOptions] = useState([]);
 
   const handleSelectClick = () => {
     setIsOpen(!isOpen);
@@ -24,30 +23,15 @@ const CheckboxSelect = ({ options, label }) => {
   };
 
   const handleConfirmClick = () => {
-    setConfirmedOptions(selectedOptions);
     setIsOpen(false);
   };
 
   const handleCancelClick = () => {
-    setSelectedOptions(confirmedOptions);
+    setSelectedOptions([]);
     setIsOpen(false);
   };
 
-  const filterText = confirmedOptions.length ? `${label}:` : label;
-
-  // Sort the options array based on whether they are selected or not
-  const sortedOptions = [...options].sort((a, b) => {
-    const aIsSelected = selectedOptions.includes(a.value);
-    const bIsSelected = selectedOptions.includes(b.value);
-
-    if (aIsSelected && !bIsSelected) {
-      return -1;
-    } else if (!aIsSelected && bIsSelected) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
+  const filterText = selectedOptions.length ? `${label}:` : label;
 
   return (
     <div className="fake-select">
@@ -57,7 +41,7 @@ const CheckboxSelect = ({ options, label }) => {
       </div>
       {isOpen && (
         <div className="fake-select__options">
-          {sortedOptions.map((option) => (
+          {options.map((option) => (
             <div
               key={option.value}
               className="fake-select__option"
@@ -81,9 +65,9 @@ const CheckboxSelect = ({ options, label }) => {
           </div>
         </div>
       )}
-      {confirmedOptions.length > 0 && (
+      {selectedOptions.length > 0 && (
         <div className="fake-select__selected-options">
-          {confirmedOptions.map((option) => (
+          {selectedOptions.map((option) => (
             <span key={option} className="fake-select__selected-option">
               {option}
             </span>
