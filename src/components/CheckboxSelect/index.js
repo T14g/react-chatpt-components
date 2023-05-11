@@ -14,11 +14,13 @@ const CheckboxSelect = ({ options, label }) => {
     const index = selectedOptions.indexOf(option);
 
     if (index !== -1) {
+      console.log("removeu");
       setSelectedOptions([
         ...selectedOptions.slice(0, index),
         ...selectedOptions.slice(index + 1),
       ]);
     } else {
+      console.log("selecionou");
       setSelectedOptions([...selectedOptions, option]);
     }
   };
@@ -31,6 +33,29 @@ const CheckboxSelect = ({ options, label }) => {
   const handleCancelClick = () => {
     setSelectedOptions(confirmedOptions);
     setIsOpen(false);
+  };
+
+  const handleRemoveOption = (option) => {
+    const index = confirmedOptions.indexOf(option);
+
+    if (index !== -1) {
+      setConfirmedOptions([
+        ...confirmedOptions.slice(0, index),
+        ...confirmedOptions.slice(index + 1),
+      ]);
+
+      setSelectedOptions([
+        ...selectedOptions.slice(0, index),
+        ...selectedOptions.slice(index + 1),
+      ]);
+
+      const sortedIndex = sortedOptions.findIndex((o) => o.value === option);
+
+      if (sortedIndex !== -1) {
+        console.log("teste");
+        sortedOptions[sortedIndex].isChecked = false;
+      }
+    }
   };
 
   const filterText = confirmedOptions.length ? `${label}:` : label;
@@ -75,7 +100,10 @@ const CheckboxSelect = ({ options, label }) => {
             <button className="fake-select__button" onClick={handleCancelClick}>
               Cancel
             </button>
-            <button className="fake-select__button" onClick={handleConfirmClick}>
+            <button
+              className="fake-select__button"
+              onClick={handleConfirmClick}
+            >
               Confirm
             </button>
           </div>
@@ -84,7 +112,11 @@ const CheckboxSelect = ({ options, label }) => {
       {confirmedOptions.length > 0 && (
         <div className="fake-select__selected-options">
           {confirmedOptions.map((option) => (
-            <span key={option} className="fake-select__selected-option">
+            <span
+              key={option}
+              className="fake-select__selected-option"
+              onClick={() => handleRemoveOption(option)}
+            >
               {option}
             </span>
           ))}
