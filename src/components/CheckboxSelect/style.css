@@ -1,0 +1,88 @@
+.fake-select {
+  position: relative;
+  display: flex;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  color: #333;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  width: 300px;
+}
+
+.fake-select__selected {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fake-select .filter-text {
+  margin-right: 10px;
+}
+
+.fake-select__options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.fake-select__option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.fake-select__option:hover {
+  background-color: #f5f5f5;
+}
+
+.fake-select__option input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.fake-select__option span {
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.fake-select__selected-options {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.fake-select__selected-option {
+  display: inline-block;
+  background-color: #4caf50;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-right: 8px;
+  margin-bottom: 5px;
+}
+
+.fake-select__selected-options {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+.fake-select__selected-option {
+  background-color: #58b368;
+  color: white;
+  padding: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
