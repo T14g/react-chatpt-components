@@ -109,7 +109,7 @@ const CheckboxSelect = ({ options, label }) => {
           </div>
         </div>
       )}
-      {confirmedOptions.length > 0 && (
+      {confirmedOptions.length > 0 && !isOpen && (
         <div className="fake-select__selected-options">
           {confirmedOptions.map((option) => (
             <span
